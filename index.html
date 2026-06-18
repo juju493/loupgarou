@@ -1,132 +1,85 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex,nofollow">
-<title>Sunset Party</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loup-Garou</title>
 
-<style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:linear-gradient(180deg,#0d0d1a,#3d1260,#ff6b47);
-  color:white;
-  text-align:center;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1c1c1c;
+      color: white;
+      text-align: center;
+    }
 
-.container{
-  padding:20px;
-  max-width:500px;
-  margin:auto;
-}
+    header {
+      padding: 40px 20px;
+      background: #2b2b2b;
+    }
 
-.card{
-  background:rgba(255,255,255,0.08);
-  padding:20px;
-  border-radius:20px;
-  margin-top:20px;
-}
+    h1 {
+      margin: 0;
+      font-size: 40px;
+    }
 
-input,textarea{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
-  border:none;
-  border-radius:10px;
-}
+    .container {
+      padding: 30px;
+    }
 
-button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:50px;
-  background:#ff6b47;
-  color:white;
-  font-weight:bold;
-}
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
 
-.hidden{display:none}
+    .start {
+      background: #e63946;
+      color: white;
+    }
 
-h1{margin-top:30px}
-</style>
+    .rules {
+      background: #457b9d;
+      color: white;
+    }
+
+    #game {
+      margin-top: 30px;
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
 
+<header>
+  <h1>🐺 Loup-Garou</h1>
+</header>
 
+<div class="container">
 
+  <button class="start" onclick="startGame()">Commencer la partie</button>
+  <button class="rules" onclick="showRules()">Règles</button>
 
-<!-- 🌅 APP -->
-<div id="app" class="hidden">
-
-  <div class="container">
-
-    <h1>🌅 Sunset Party</h1>
-
-    <p id="countdown"></p>
-
-    <div class="card">
-      <h3>RSVP</h3>
-
-      <input id="name" placeholder="Ton prénom">
-      <textarea id="msg" placeholder="Message / allergies / infos"></textarea>
-
-      <button onclick="send()">Envoyer 🌸</button>
-    </div>
-
+  <div id="game">
+    <h2>La partie commence…</h2>
+    <p>Les rôles seront bientôt ajoutés ici.</p>
   </div>
 
 </div>
 
 <script>
-
-const PASSWORD = "sunset2026";
-
-function check(){
-  if(document.getElementById("pwd").value === PASSWORD){
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("app").classList.remove("hidden");
-  } else {
-    alert("Mauvais mot de passe 😅");
-  }
-}
-
-// ⏳ COUNTDOWN 2026
-const target = new Date("2026-06-30T16:30:00");
-
-setInterval(()=>{
-  const d = target - new Date();
-
-  if(d <= 0){
-    document.getElementById("countdown").innerText = "🎉 C’est aujourd’hui !";
-    return;
+  function startGame() {
+    document.getElementById("game").style.display = "block";
   }
 
-  const days = Math.floor(d/86400000);
-  const hours = Math.floor((d%86400000)/3600000);
-
-  document.getElementById("countdown").innerText =
-    days + " jours " + hours + " heures restantes";
-},1000);
-
-// 📩 OPTION GOOGLE SHEETS (remplace si tu veux)
-function send(){
-  const data = {
-    name: document.getElementById("name").value,
-    msg: document.getElementById("msg").value
-  };
-
-  // ⚠️ si tu n’as pas encore Google Sheets, ça ne casse rien
-  fetch("TON_URL_APPS_SCRIPT",{
-    method:"POST",
-    body: JSON.stringify(data)
-  }).catch(()=>{});
-
-  alert("Envoyé 🌅");
-}
-
+  function showRules() {
+    alert("Le but du jeu est de démasquer les loups-garous !");
+  }
 </script>
 
 </body>
